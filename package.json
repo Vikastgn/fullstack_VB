@@ -1,0 +1,19 @@
+{
+  "name": "weather-lens-telegram-bot",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Telegram weather forecast bot powered by Fastify and Open-Meteo",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev": "node --env-file=.env --watch src/main.js",
+    "start": "node src/main.js",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "fastify": "^5.0.0"
+  },
+  "devDependencies": {}
+}
