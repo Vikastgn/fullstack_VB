@@ -3,3 +3,5 @@ node_modules/
 .vercel/
 coverage/
 .idea/
+plantuml.jar
+plantuml-java8.jar

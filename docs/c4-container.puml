@@ -1,0 +1,21 @@
+@startuml
+!include C4_Container.puml
+
+title Weather Lens Bot — Containers
+LAYOUT_LEFT_RIGHT()
+
+Person(user, "Telegram User", "Запрашивает погоду по названию города")
+System_Ext(telegram, "Telegram", "Messaging platform and Bot API")
+System_Ext(openMeteo, "Open-Meteo API", "Geocoding and weather forecast service")
+
+System_Boundary(weatherLens, "Weather Lens Bot") {
+    Container(api, "Fastify application", "Node.js, Fastify", "Принимает webhook и запускает use cases")
+    Container(core, "Application core", "JavaScript", "Получает и форматирует прогноз без зависимости от инфраструктуры")
+}
+
+Rel(user, telegram, "Отправляет город", "Telegram")
+Rel(telegram, api, "Webhook update", "HTTPS / JSON")
+Rel(api, core, "Вызывает use cases")
+Rel(core, openMeteo, "Геокодирование и прогноз", "HTTPS / JSON")
+Rel(api, telegram, "sendMessage", "HTTPS / JSON")
+@enduml

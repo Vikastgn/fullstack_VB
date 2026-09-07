@@ -18,7 +18,11 @@ Telegram-бот на **Fastify**, который получает названи
 - `src/infrastructure` — адаптеры Telegram, Open-Meteo и HTTP;
 - `api/index.js` — serverless entry point Vercel.
 
-C4-диаграммы: [context](docs/c4-context.md), [container](docs/c4-container.md), [components](docs/c4-components.md).
+C4-диаграммы в стиле C4-PlantUML: [context](docs/c4-context.md), [container](docs/c4-container.md), [components](docs/c4-components.md). Их исходники `.puml` и готовые PNG лежат в `docs/`.
+
+### Просмотр и редактирование C4-диаграмм
+
+PNG уже отображаются на GitHub. Для редактирования исходников `.puml` в WebStorm: **File → Settings → Plugins → Marketplace → PlantUML integration → Install**, затем перезапустите IDE и откройте файл `docs/c4-*.puml`. Плагин необязателен для работы бота.
 
 ## Локальный запуск
 

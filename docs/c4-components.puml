@@ -1,0 +1,24 @@
+@startuml
+!include C4_Component.puml
+
+title Weather Lens Bot — Fastify Application Components
+LAYOUT_TOP_DOWN()
+
+System_Ext(telegram, "Telegram Bot API", "External system")
+System_Ext(openMeteoApi, "Open-Meteo API", "External system")
+
+Container_Boundary(fastify, "Fastify application") {
+    Component(route, "Webhook route", "Fastify controller", "Проверяет секрет URL и принимает Telegram update")
+    Component(handler, "HandleTelegramUpdate", "Use case", "Выбирает текст ответа и отправляет его в чат")
+    Component(forecast, "GetWeatherForecast", "Use case", "Получает и форматирует текущую погоду и прогноз")
+    Component(weatherProvider, "OpenMeteoWeatherProvider", "Infrastructure adapter", "Ищет город и запрашивает прогноз")
+    Component(telegramGateway, "TelegramBotApiGateway", "Infrastructure adapter", "Отправляет сообщение через Bot API")
+}
+
+Rel(route, handler, "execute(update)")
+Rel(handler, forecast, "execute(city)")
+Rel(forecast, weatherProvider, "getForecast(city)")
+Rel(handler, telegramGateway, "sendMessage(chatId, text)")
+Rel(weatherProvider, openMeteoApi, "Forecast and geocoding requests", "HTTPS / JSON")
+Rel(telegramGateway, telegram, "sendMessage", "HTTPS / JSON")
+@enduml
