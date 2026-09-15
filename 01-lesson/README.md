@@ -67,6 +67,32 @@ Invoke-RestMethod "https://api.telegram.org/bot<TELEGRAM_BOT_TOKEN>/getWebhookIn
 npm test
 ```
 
+## Supabase Edge Function (урок 2)
+
+В этом же проекте находится выполненное задание второго урока: endpoint
+`my-function`. Он принимает только `GET`-запрос и отвечает JSON:
+
+```json
+{
+  "message": "hello, it-incubator",
+  "studentId": 3116
+}
+```
+
+Для локальной проверки из папки `01-lesson` запустите Supabase, а затем
+откройте endpoint:
+
+```powershell
+npx supabase start
+Invoke-RestMethod http://127.0.0.1:54321/functions/v1/my-function
+```
+
+После привязки к облачному Supabase-проекту функцию можно опубликовать командой:
+
+```powershell
+npx supabase functions deploy my-function
+```
+
 ## Что указать в отчёте
 
 1. **Название бота:** Weather Lens Bot (можно заменить в @BotFather).
