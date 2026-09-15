@@ -1,0 +1,7 @@
+node_modules/
+.env
+.vercel/
+coverage/
+.idea/
+plantuml.jar
+plantuml-java8.jar
