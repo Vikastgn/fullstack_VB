@@ -69,7 +69,6 @@ async function handleTelegramUpdate(update: TelegramUpdate) {
 }
 
 Deno.serve(async (request) => {
-  // Ответ для проверки второго ДЗ.
   if (request.method === "GET") {
     return json({ message: "hello, it-incubator", studentId: 3116 });
   }
@@ -86,7 +85,6 @@ Deno.serve(async (request) => {
     await handleTelegramUpdate(await request.json());
   } catch (error) {
     console.error("Cannot process Telegram update", error);
-    // Telegram retries non-2xx responses; acknowledge the update to prevent retry storms.
   }
 
   return json({ ok: true });
